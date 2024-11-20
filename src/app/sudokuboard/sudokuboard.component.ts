@@ -19,13 +19,10 @@ export class SudokuboardComponent implements OnInit{
 
     this.createGrid();
     
-    
   }
-
 
   createGrid(){
     
-
 
     this.dataDisplay.fetchData();
     console.log(this.dataDisplay.data.newboard.grids);
@@ -47,9 +44,11 @@ export class SudokuboardComponent implements OnInit{
 
   checkSolution(){
     
-
     document.getElementById("checkBtn1")!.textContent="Check: on";
     let mistakeNumber = 0;
+
+        const warningMessage = document.querySelector(".warningMessage")
+    warningMessage!.textContent = "Check button is on, turn it off to type in numbers"
 
     for(let j = 0; j<81; j=j+9){
       for(let i = 0; i<9; i++){
@@ -61,25 +60,23 @@ export class SudokuboardComponent implements OnInit{
           (<HTMLInputElement>document.getElementById(`cell-${j+i}`)).classList.replace('nullCell', 'emptyCell');
           (<HTMLInputElement>document.getElementById(`cell-${j+i}`)).classList.replace('correctCell', 'emptyCell');
           (<HTMLInputElement>document.getElementById(`cell-${j+i}`)).readOnly = false;
-          document.getElementById("checkBtn1")!.textContent="Check: off";
-
           
+          document.getElementById("checkBtn1")!.textContent="Check: off";
+          warningMessage!.textContent = ""
+ 
         }
         else{
         if ((<HTMLInputElement>document.getElementById(`cell-${j+i}`)).value == ''){
-          console.log("Puste rozwiazanie");
           (<HTMLInputElement>document.getElementById(`cell-${j+i}`)).classList.replace('emptyCell','nullCell');
           (<HTMLInputElement>document.getElementById(`cell-${j+i}`)).readOnly = true;
         }
         else {if((<HTMLInputElement>document.getElementById(`cell-${j+i}`)).value != `${this.dataDisplay.data.newboard.grids[0].solution[j/9][i]}`){
-          console.log("Niewlasciwe rozwiazanie");
           (<HTMLInputElement>document.getElementById(`cell-${j+i}`)).classList.replace('emptyCell','incorrectCell');
           mistakeNumber++;
           (<HTMLInputElement>document.getElementById(`cell-${j+i}`)).readOnly = true;
 
         }
         else{
-          console.log("wlasciwe rozwiazanie");
           (<HTMLInputElement>document.getElementById(`cell-${j+i}`)).classList.replace('emptyCell','correctCell');
           (<HTMLInputElement>document.getElementById(`cell-${j+i}`)).readOnly = true;
         }}

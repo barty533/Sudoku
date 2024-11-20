@@ -1,3 +1,4 @@
+<div class="container">
 <table id="grid">
 
   <tr>
@@ -127,9 +128,12 @@
   </tr>
 
 </table>
-
+<div class="rightSide">
 <button id="checkBtn1" (click)="checkSolution()">Check</button>
 <button (click)="reset()">Reset</button>
 <button (click)="reload()">New Board</button>
 <button (click)="checkIfGameWon()">Finish</button>
-<div>Mistake number: {{this.mistakeNumber}}</div>
+<div>Mistakes counter: {{this.mistakeNumber}}</div>
+<div class="warningMessage"></div>
+</div>
+</div>

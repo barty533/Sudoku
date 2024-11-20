@@ -1,0 +1,7 @@
+app-sudokuboard{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80vh;
+    padding-bottom: 200px;
+}
