@@ -48,7 +48,7 @@ export class SudokuboardComponent implements OnInit{
     let mistakeNumber = 0;
 
         const warningMessage = document.querySelector(".warningMessage")
-    warningMessage!.textContent = "Check button is on, turn it off to type in numbers"
+    warningMessage!.textContent = "*Check button is on, turn it off to type in numbers"
 
     for(let j = 0; j<81; j=j+9){
       for(let i = 0; i<9; i++){
@@ -110,20 +110,29 @@ export class SudokuboardComponent implements OnInit{
     let solutionCounter = 0;
     for(let j = 0; j<81; j=j+9){
       for(let i = 0; i<9; i++){
-if((<HTMLInputElement>document.getElementById(`cell-${j+i}`)).value == `${this.dataDisplay.data.newboard.grids[0].solution[j/9][i]}`){
-  solutionCounter++
-}
+        if((<HTMLInputElement>document.getElementById(`cell-${j+i}`)).value == `${this.dataDisplay.data.newboard.grids[0].solution[j/9][i]}`){
+          solutionCounter++
+        }}}
+    
+    const finishMessage = document.getElementById('finishMessage')
+
+    if(finishMessage!.style.display == "none"){
+    finishMessage!.style.display = "block";
 
 
 
-      }}
-      console.log(solutionCounter)
       if(solutionCounter == 81){
-        console.log('Gratulacje!')
+        finishMessage!.textContent = "Congratulations you won! press 'New board' to start over."
+        
       }
       else{
         console.log('Sprobuj ponownie')
-      }
-  }
+        finishMessage!.textContent = "Something's wrong try different solution"
 
+      }
+    }
+    else{
+      finishMessage!.style.display = "none";
+    }
+    }
 }
